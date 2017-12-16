@@ -18,6 +18,7 @@ class Airport
 
   def depart(plane)
     fail 'That plane is not currently at the airport' if !checkHangar(plane)
+    fail 'The airport is currently closed due to stormy weather' if stormy? 
     plane.take_off
     @hangar.delete(plane)
   end

@@ -68,8 +68,19 @@ describe Airport do
         expect(plane).to receive :take_off
         airport.depart(plane)
       end
-
     end
+
+    context "when the weather is stormy" do
+
+      it "throws an error if the airport is closed due to stormy weather" do
+        plane = double('plane', :land => nil, :take_off => nil, :is_a? => true)
+        allow(Kernel).to receive(:rand).and_return(1, 9)
+        airport.arrive(plane)
+        expect { airport.depart(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
+      end
+    end
+
+  end
 
     context "when the plane is not in the hangar" do
 
@@ -78,7 +89,5 @@ describe Airport do
         expect { airport.depart(plane) }.to raise_error 'That plane is not currently at the airport'
       end
     end
-
-  end
 
 end

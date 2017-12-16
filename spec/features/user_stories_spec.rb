@@ -31,10 +31,19 @@ describe 'User Stories' do
 
   #As an air traffic controller
   #To ensure safety
-  #I want to prevent landing when weather is stormy
+  #I want to prevent landing when weather is stormy.
   it "to ensure safety, planes cannot land during storms" do
     allow(Kernel).to receive(:rand).and_return(9)
     expect { airport.arrive(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
+  end
+
+  #As an air traffic controller
+  #To ensure safety
+  #I want to prevent takeoff when the weather is stormy.
+  it "to ensure safety, planes cannot takeoff during storms" do
+    allow(Kernel).to receive(:rand).and_return(1, 9)
+    airport.arrive(plane)
+    expect { airport.depart(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
   end
 
 end
