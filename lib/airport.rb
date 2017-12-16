@@ -6,11 +6,11 @@ class Airport
     @hangar = []
   end
 
-  def land(plane)
+  def arrive(plane)
     @hangar.push(plane)
   end
 
-  def take_off(plane)
+  def depart(plane)
     @hangar.pop
   end
 
