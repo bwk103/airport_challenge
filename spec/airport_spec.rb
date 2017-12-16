@@ -7,20 +7,26 @@ describe Airport do
   describe "#arrive" do
 
     it "adds a plane to the hangar" do
-      plane = double('plane', :land => nil)
+      plane = double('plane', :land => nil, :is_a? => true )
       airport.arrive(plane)
       expect(airport).not_to be_empty
     end
 
     it "calls the plane's land method" do
-      plane = double('plane')
+      plane = double('plane', :is_a? => true)
       expect(plane).to receive :land
       airport.arrive(plane)
     end
+
+    it "raises an error if a non-plane is passed as a parameter" do
+      car = double('car', :land => nil, :is_a? => false)
+      expect { airport.arrive(car) }.to raise_error 'Only planes can land at the airport'
+    end
+
   end
 
   describe "#depart" do
-    let(:plane) { double('plane', :land => nil, :take_off => nil) }
+    let(:plane) { double('plane', :land => nil, :take_off => nil, :is_a? => true) }
 
     before(:each) do
       airport.arrive(plane)
