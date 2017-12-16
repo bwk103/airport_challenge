@@ -46,4 +46,9 @@ describe 'User Stories' do
     expect { airport.depart(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
   end
 
+  #As an air traffic controller
+  #To ensure safety
+  #I want to prevent landing when the airport is full.
+  
+
 end

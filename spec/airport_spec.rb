@@ -39,6 +39,16 @@ describe Airport do
       expect { airport.arrive(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
     end
 
+    it "raises an error if the airport is already at capacity" do
+      plane = double('plane', :land => nil, :is_a? => true, :take_off => nil)
+      plane2 = double('plane', :land => nil, :is_a? => true, :take_off => nil)
+      plane3 = double('plane', :land => nil, :is_a? => true, :take_off => nil)
+      allow(Kernel).to receive(:rand).and_return(1)
+      airport.arrive(plane)
+      airport.arrive(plane2)
+      expect { airport.arrive(plane3) }.to raise_error 'The airport is currently at capacity'
+    end
+
   end
 
   describe "#depart" do
