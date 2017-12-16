@@ -8,25 +8,35 @@ describe Airport do
 
     it "adds a plane to the hangar" do
       plane = double('plane', :land => nil, :is_a? => true )
+      allow(Kernel).to receive(:rand).and_return(1)
       airport.arrive(plane)
       expect(airport).not_to be_empty
     end
 
     it "calls the plane's land method" do
       plane = double('plane', :is_a? => true)
+      allow(Kernel).to receive(:rand).and_return(1)
       expect(plane).to receive :land
       airport.arrive(plane)
     end
 
     it "raises an error if a non-plane is passed as a parameter" do
       car = double('car', :land => nil, :is_a? => false)
+      allow(Kernel).to receive(:rand).and_return(1)
       expect { airport.arrive(car) }.to raise_error 'Only planes can land at the airport'
     end
 
     it "raises an error if the plane is already at the airport" do
       plane = double('plane', :land => nil, :is_a? => true )
+      allow(Kernel).to receive(:rand).and_return(1)
       airport.arrive(plane)
       expect { airport.arrive(plane) }.to raise_error 'That plane is already at the airport'
+    end
+
+    it "raises an error if the airport is closed" do
+      plane = double('plane', :land => nil, :is_a? => true, :take_off => nil)
+      allow(Kernel).to receive(:rand).and_return(9)
+      expect { airport.arrive(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
     end
 
   end
@@ -37,6 +47,7 @@ describe Airport do
 
       let(:plane) { double('plane', :land => nil, :take_off => nil, :is_a? => true) }
       before(:each) do
+        allow(Kernel).to receive(:rand).and_return(1)
         airport.arrive(plane)
       end
 
@@ -52,6 +63,7 @@ describe Airport do
 
       it "calls the plane's depart method" do
         plane = double('plane', :land => nil, :is_a? => true)
+        allow(Kernel).to receive(:rand).and_return(1)
         airport.arrive(plane)
         expect(plane).to receive :take_off
         airport.depart(plane)

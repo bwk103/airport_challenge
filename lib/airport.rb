@@ -11,6 +11,7 @@ class Airport
   def arrive(plane)
     fail 'Only planes can land at the airport' if !checkPlane(plane)
     fail 'That plane is already at the airport' if checkHangar(plane)
+    fail 'The airport is currently closed due to stormy weather' if stormy?
     @hangar.push(plane)
     plane.land
   end
@@ -34,6 +35,10 @@ class Airport
 
   def checkHangar(plane)
     @hangar.include?(plane)
+  end
+
+  def stormy?
+    Kernel.rand(1..9) > 7
   end
 
 end
