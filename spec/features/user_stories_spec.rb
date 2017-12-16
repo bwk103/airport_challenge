@@ -15,6 +15,7 @@ describe 'User Stories' do
   #So I can get passengers on the way to their destination
   #I want to instruct a plane to take off from an airport
   it "to allow passengers to leave, planes can take off from an airport" do
+    airport.arrive(plane)
     expect { airport.depart(plane) }.not_to raise_error
   end
 
