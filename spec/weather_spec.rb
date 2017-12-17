@@ -2,7 +2,7 @@ require 'weather'
 
 describe Weather do
 
-  subject(:weather) { Weather.new }
+  subject(:weather) { described_class.new }
 
   describe "#stormy" do
     it "can set the weather to be stormy" do

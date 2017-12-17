@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-    subject(:airport) { Airport.new }
+    subject(:airport) { described_class.new }
 
   describe "#arrive" do
     let(:plane) { instance_double('plane', :land => nil, :is_a? => true, :take_off => nil) }
@@ -23,23 +23,27 @@ describe Airport do
 
     it "raises an error if a non-plane is passed as a parameter" do
       car = double('car', :land => nil, :is_a? => false)
-      expect { airport.arrive(car) }.to raise_error 'Only planes can land at the airport'
+      message = 'Only planes can land at the airport'
+      expect { airport.arrive(car) }.to raise_error message
     end
 
     it "raises an error if the plane is already at the airport" do
       airport.arrive(plane)
-      expect { airport.arrive(plane) }.to raise_error 'That plane is already at the airport'
+      message = 'That plane is already at the airport'
+      expect { airport.arrive(plane) }.to raise_error message
     end
 
     it "raises an error if the airport is already at capacity" do
       20.times { airport.arrive(Plane.new) }
-      expect { airport.arrive(plane) }.to raise_error 'The airport is currently at capacity'
+      message = 'The airport is currently at capacity'
+      expect { airport.arrive(plane) }.to raise_error message
     end
 
     context "when the weather is stormy" do
       it "raises an error if the airport is closed" do
         allow(Kernel).to receive(:rand).and_return(9)
-        expect { airport.arrive(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
+        message = 'The airport is currently closed due to stormy weather'
+        expect { airport.arrive(plane) }.to raise_error message
       end
     end
 
@@ -92,7 +96,8 @@ describe Airport do
       it "throws an error if the airport is closed due to stormy weather" do
         allow(Kernel).to receive(:rand).and_return(1, 9)
         airport.arrive(plane)
-        expect { airport.depart(plane) }.to raise_error 'The airport is currently closed due to stormy weather'
+        message = 'The airport is currently closed due to stormy weather'
+        expect { airport.depart(plane) }.to raise_error message
       end
     end
 
@@ -102,7 +107,8 @@ describe Airport do
 
       it "throws an error" do
         plane = instance_double('plane', :land => nil, :take_off => nil, :is_a? => true)
-        expect { airport.depart(plane) }.to raise_error 'That plane is not currently at the airport'
+        message = 'That plane is not currently at the airport'
+        expect { airport.depart(plane) }.to raise_error message
       end
     end
 
