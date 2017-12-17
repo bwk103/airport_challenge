@@ -1,18 +1,6 @@
-Airport Challenge
-=================
+# Airport Challenge
 
-```
-        ______
-        _\____\___
-=  = ==(____MA____)
-          \_____\___________________,-~~~~~~~`-.._
-          /     o o o o o o o o o o o o o o o o  |\_
-          `~-.__       __..----..__                  )
-                `---~~\___________/------------`````
-                =  ===(_________)
-
-
-### Challenge
+## Challenge
 
 We have a request from a client to write the software to control the flow of planes at an airport. The planes can land and take off provided that the weather is sunny. Occasionally it may be stormy, in which case no planes can land or take off.  Here are the user stories that we worked out in collaboration with the client:
 
@@ -56,38 +44,37 @@ The Weather class randomly generates stormy weather which has the effect of clos
 
 1.  Enter the following at the command line
 
- ```git clone https://github.com/bwk103/airport_challenge.git```
+ `git clone https://github.com/bwk103/airport_challenge.git`
 
 2.  If not already installed, install Bundler using the following command:
 
- ``` gem install bundler ```
+  `gem install bundler`
 
 3. Enter the following command to install gems:
 
- ``` bundle install```
+  `bundle install`
 
 4. Enter IRB (or your REPL of choice):
 
- ``` irb ```
+  `irb`
 
 5. Require 'airport.rb' and 'plane.rb' using the following command (if within the project directory):
-
- ``` require'./lib/airport.rb' ```
+`require'./lib/airport.rb'`
 
 ### Using the System
 
 #### Creating Airports & Planes
 
-![ScreenShot](./screenshots/image1.png)
+![ScreenShot](screenshots/image1.png)
 
 
 #### Landing/Takeoff and Checking Plane Status
 
-![ScreenShot](./screenshots/image3.png)
+![ScreenShot](screenshots/image3.png)
 
 
  ### Running Tests
 
  The code includes unit and feature tests using the rspec test framework.  In order to run the tests, simply execute the following at the command line:
 
- ``` rspec ```
+`rspec`
