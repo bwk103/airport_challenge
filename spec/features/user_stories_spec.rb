@@ -63,5 +63,9 @@ describe 'User Stories' do
     expect(airport2.capacity).to be(10)
   end
 
-
+  #Bonus - Write an rspec feature test that lands and takes off a number of planes
+  it "to show the system works, multiple planes can land" do
+    allow(Kernel).to receive(:rand).and_return(1)
+    expect { 10.times { airport.arrive(Plane.new) } }.not_to raise_error
+  end
 end
