@@ -49,6 +49,19 @@ describe 'User Stories' do
   #As an air traffic controller
   #To ensure safety
   #I want to prevent landing when the airport is full.
-  
+  it "for safety reasons, prevents landing when the airport is at capacity" do
+    allow(Kernel).to receive(:rand).and_return(1)
+    20.times { airport.arrive(Plane.new) }
+    expect { airport.arrive(plane) }.to raise_error 'The airport is currently at capacity'
+  end
+
+  #As a system designer
+  #So that the software can be used for many different airports
+  #I would like a default airport capacity that can be overridden as appropriate.
+  it "so the system can be reused, capacity can be specified by the user" do
+    airport2 = Airport.new(10)
+    expect(airport2.capacity).to be(10)
+  end
+
 
 end
