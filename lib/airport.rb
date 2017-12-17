@@ -43,7 +43,7 @@ class Airport
   end
 
   def stormy?
-    Kernel.rand(1..9) > 7
+    Weather.new.stormy?
   end
 
   def atCapacity
