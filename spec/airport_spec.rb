@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
 
-    subject(:airport) { described_class.new(20, weather) }
+    subject(:airport) { described_class.new(weather, 20) }
     let(:weather) { instance_double('weather') }
     let(:plane) { instance_double('plane', :land => nil, :is_a? => true, :take_off => nil) }
 
@@ -63,7 +63,7 @@ describe Airport do
     end
 
     it "can be changed by the user passing a parameter to the constructor" do
-      airport2 = Airport.new(50, weather)
+      airport2 = Airport.new(weather, 50)
       expect(airport2.capacity).to be 50
     end
 

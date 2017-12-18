@@ -1,6 +1,6 @@
 describe 'User Stories' do
 
-  let(:airport) { Airport.new(20, weather) }
+  let(:airport) { Airport.new(weather, 20) }
   let(:plane) { Plane.new }
   let(:weather) { Weather.new }
 
@@ -60,7 +60,7 @@ describe 'User Stories' do
   #So that the software can be used for many different airports
   #I would like a default airport capacity that can be overridden as appropriate.
   it "so the system can be reused, capacity can be specified by the user" do
-    airport2 = Airport.new(10, weather)
+    airport2 = Airport.new(weather, 10)
     expect(airport2.capacity).to be(10)
   end
 
